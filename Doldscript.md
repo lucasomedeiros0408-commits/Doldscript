@@ -1,0 +1,401 @@
+-- Doldscript - Roube um peixe (Freeze All adicionado)
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local TweenService = game:GetService("TweenService")
+local LocalPlayer = Players.LocalPlayer
+
+-- refs de character
+local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+local function getHumanoid(char) return char and (char:FindFirstChildOfClass("Humanoid") or char:FindFirstChild("Humanoid")) end
+local HRP = Character:WaitForChild("HumanoidRootPart")
+local Humanoid = getHumanoid(Character)
+
+LocalPlayer.CharacterAdded:Connect(function(char)
+    Character = char
+    HRP = char:WaitForChild("HumanoidRootPart")
+    Humanoid = getHumanoid(char)
+end)
+
+-- estados
+local basePos = nil
+local flying = false
+local speedBoost = false
+local highJump = false
+local noclip = false
+
+local loopKillEnabled = false
+local loopKillName = ""
+local freezeAll = false -- novo estado
+
+-- ===== util =====
+local function notify(lbl, text, color)
+    if lbl and lbl:IsA("TextLabel") then
+        lbl.Text = text
+        lbl.TextColor3 = color or Color3.fromRGB(255,255,255)
+    end
+end
+
+local function findPlayerByName(name)
+    if not name then return nil end
+    name = name:lower():gsub("^%s*(.-)%s*$","%1")
+    for _,plr in ipairs(Players:GetPlayers()) do
+        if plr ~= LocalPlayer then
+            local n = (plr.Name or ""):lower()
+            local dn = (plr.DisplayName or ""):lower()
+            if n == name or dn == name then
+                return plr
+            end
+        end
+    end
+    return nil
+end
+
+-- kill robusto
+local function killPlayerOnce(plr)
+    if not plr or not plr.Character then return false end
+    local hum = plr.Character:FindFirstChildOfClass("Humanoid")
+    if not hum then return false end
+
+    pcall(function() hum:TakeDamage((hum.MaxHealth or 100) * 2) end)
+    task.wait(0.05)
+    pcall(function() hum.Health = 0 end)
+    task.wait(0.05)
+    pcall(function() plr.Character:BreakJoints() end)
+    task.wait(0.05)
+
+    return hum.Health <= 0
+end
+
+-- loop kill coroutine
+local loopTask
+local function startLoopKill(name, statusLabel)
+    loopKillName = name or ""
+    loopKillEnabled = true
+    if loopTask and type(loopTask.cancel) == "function" then
+        pcall(function() loopTask.cancel() end)
+    end
+    loopTask = task.spawn(function()
+        while loopKillEnabled do
+            if loopKillName ~= "" then
+                local target = findPlayerByName(loopKillName)
+                if target and target.Character and target.Character:FindFirstChildOfClass("Humanoid") then
+                    local ok = killPlayerOnce(target)
+                    if ok then
+                        notify(statusLabel, "Matou: "..target.Name, Color3.fromRGB(200,255,200))
+                    else
+                        notify(statusLabel, "Tentando matar: "..target.Name, Color3.fromRGB(255,200,100))
+                    end
+                else
+                    notify(statusLabel, "Alvo não encontrado: "..tostring(loopKillName), Color3.fromRGB(255,150,150))
+                end
+            end
+            task.wait(0.6)
+        end
+        notify(statusLabel, "Loop Kill desligado", Color3.fromRGB(200,200,200))
+    end)
+end
+
+local function stopLoopKill()
+    loopKillEnabled = false
+end
+
+-- ===== GUI =====
+local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
+ScreenGui.Name = "DoldscriptUI"
+
+local Frame = Instance.new("Frame", ScreenGui)
+Frame.Size = UDim2.new(0, 420, 0, 420)
+Frame.Position = UDim2.new(0.5,0,0.5,0)
+Frame.AnchorPoint = Vector2.new(0.5,0.5)
+Frame.BackgroundColor3 = Color3.fromRGB(28,28,28)
+Instance.new("UICorner", Frame).CornerRadius = UDim.new(0,12)
+
+-- Close / Open
+local CloseBtn = Instance.new("TextButton", Frame)
+CloseBtn.Size = UDim2.new(0,32,0,32)
+CloseBtn.Position = UDim2.new(1,-38,0,6)
+CloseBtn.Text = "X"
+CloseBtn.Font = Enum.Font.GothamBold
+CloseBtn.TextSize = 18
+CloseBtn.BackgroundColor3 = Color3.fromRGB(200,40,40)
+CloseBtn.TextColor3 = Color3.fromRGB(255,255,255)
+Instance.new("UICorner", CloseBtn).CornerRadius = UDim.new(0,6)
+
+local OpenBtn = Instance.new("TextButton", ScreenGui)
+OpenBtn.Size = UDim2.new(0,44,0,44)
+OpenBtn.Position = UDim2.new(0,10,0,10)
+OpenBtn.Text = "D"
+OpenBtn.Font = Enum.Font.GothamBold
+OpenBtn.TextSize = 22
+OpenBtn.BackgroundColor3 = Color3.fromRGB(50,50,200)
+OpenBtn.TextColor3 = Color3.fromRGB(255,255,255)
+Instance.new("UICorner", OpenBtn).CornerRadius = UDim.new(0,6)
+OpenBtn.Visible = false
+
+CloseBtn.MouseButton1Click:Connect(function() Frame.Visible = false OpenBtn.Visible = true end)
+OpenBtn.MouseButton1Click:Connect(function() Frame.Visible = true OpenBtn.Visible = false end)
+
+-- ===== botão D arrastável =====
+local draggingOpen = false
+local dragInputOpen, mousePosOpen, framePosOpen
+OpenBtn.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        draggingOpen = true
+        mousePosOpen = input.Position
+        framePosOpen = OpenBtn.Position
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                draggingOpen = false
+            end
+        end)
+    end
+end)
+OpenBtn.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement then
+        dragInputOpen = input
+    end
+end)
+RunService.RenderStepped:Connect(function()
+    if draggingOpen and dragInputOpen then
+        local delta = dragInputOpen.Position - mousePosOpen
+        OpenBtn.Position = UDim2.new(framePosOpen.X.Scale, framePosOpen.X.Offset + delta.X, framePosOpen.Y.Scale, framePosOpen.Y.Offset + delta.Y)
+    end
+end)
+
+-- Title
+local Title = Instance.new("TextLabel", Frame)
+Title.Size = UDim2.new(1,-60,0,48)
+Title.Position = UDim2.new(0,12,0,6)
+Title.BackgroundTransparency = 1
+Title.Text = "Doldscript - Roube um peixe"
+Title.TextColor3 = Color3.fromRGB(255,200,50)
+Title.Font = Enum.Font.GothamBold
+Title.TextSize = 22
+
+-- Tabs
+local TabMain = Instance.new("TextButton", Frame)
+TabMain.Size = UDim2.new(0,110,0,30)
+TabMain.Position = UDim2.new(0,12,0,60)
+TabMain.Text = "Principal"
+TabMain.Font = Enum.Font.Gotham
+TabMain.TextSize = 14
+TabMain.BackgroundColor3 = Color3.fromRGB(70,70,70)
+Instance.new("UICorner", TabMain).CornerRadius = UDim.new(0,6)
+
+local TabPlayers = Instance.new("TextButton", Frame)
+TabPlayers.Size = UDim2.new(0,110,0,30)
+TabPlayers.Position = UDim2.new(0,132,0,60)
+TabPlayers.Text = "Players"
+TabPlayers.Font = Enum.Font.Gotham
+TabPlayers.TextSize = 14
+TabPlayers.BackgroundColor3 = Color3.fromRGB(50,50,50)
+Instance.new("UICorner", TabPlayers).CornerRadius = UDim.new(0,6)
+
+-- Content frames
+local MainFrame = Instance.new("Frame", Frame)
+MainFrame.Size = UDim2.new(1,-24,1,-120)
+MainFrame.Position = UDim2.new(0,12,0,100)
+MainFrame.BackgroundTransparency = 1
+
+local PlayersFrame = Instance.new("Frame", Frame)
+PlayersFrame.Size = MainFrame.Size
+PlayersFrame.Position = MainFrame.Position
+PlayersFrame.BackgroundTransparency = 1
+PlayersFrame.Visible = false
+
+local function switchToMain()
+    MainFrame.Visible = true
+    PlayersFrame.Visible = false
+    TabMain.BackgroundColor3 = Color3.fromRGB(70,70,70)
+    TabPlayers.BackgroundColor3 = Color3.fromRGB(50,50,50)
+end
+local function switchToPlayers()
+    MainFrame.Visible = false
+    PlayersFrame.Visible = true
+    TabMain.BackgroundColor3 = Color3.fromRGB(50,50,50)
+    TabPlayers.BackgroundColor3 = Color3.fromRGB(70,70,70)
+end
+TabMain.MouseButton1Click:Connect(switchToMain)
+TabPlayers.MouseButton1Click:Connect(switchToPlayers)
+
+local function createBtn(parent, text, posY)
+    local b = Instance.new("TextButton", parent)
+    b.Size = UDim2.new(0.9,0,0,40)
+    b.Position = UDim2.new(0.05,0,0,posY)
+    b.BackgroundColor3 = Color3.fromRGB(70,70,70)
+    b.Text = text
+    b.Font = Enum.Font.GothamBold
+    b.TextSize = 16
+    b.TextColor3 = Color3.fromRGB(255,255,255)
+    Instance.new("UICorner", b).CornerRadius = UDim.new(0,8)
+    return b
+end
+
+-- Principal buttons
+local y = 0
+local MarkBtn = createBtn(MainFrame, "Marcar Base", y); y = y + 50
+local GoBtn = createBtn(MainFrame, "Voltar Base", y); y = y + 50
+local SpeedBtn = createBtn(MainFrame, "Speed Boost", y); y = y + 50
+local JumpBtn = createBtn(MainFrame, "High Jump", y); y = y + 50
+local NoclipBtn = createBtn(MainFrame, "Noclip", y); y = y + 50
+
+local StatusLabel = Instance.new("TextLabel", Frame)
+StatusLabel.Size = UDim2.new(1,-24,0,24)
+StatusLabel.Position = UDim2.new(0,12,1,-36)
+StatusLabel.BackgroundTransparency = 1
+StatusLabel.Text = "Status: pronto"
+StatusLabel.TextColor3 = Color3.fromRGB(200,200,200)
+StatusLabel.Font = Enum.Font.Gotham
+StatusLabel.TextSize = 14
+
+-- Players frame
+local P_y = 10
+local KillBox = Instance.new("TextBox", PlayersFrame)
+KillBox.Size = UDim2.new(0.9,0,0,36)
+KillBox.Position = UDim2.new(0.05,0,0,P_y)
+KillBox.PlaceholderText = "Nome do jogador para Loop Kill"
+KillBox.BackgroundColor3 = Color3.fromRGB(55,55,55)
+KillBox.TextColor3 = Color3.fromRGB(255,255,255)
+Instance.new("UICorner", KillBox).CornerRadius = UDim.new(0,6)
+P_y = P_y + 46
+
+local LoopBtn = createBtn(PlayersFrame, "Ativar Loop Kill", P_y); P_y = P_y + 50
+local FreezeBtn = createBtn(PlayersFrame, "Freeze All", P_y); P_y = P_y + 50 -- novo botão
+local LoopStatus = Instance.new("TextLabel", PlayersFrame)
+LoopStatus.Size = UDim2.new(0.9,0,0,24)
+LoopStatus.Position = UDim2.new(0.05,0,0,P_y)
+LoopStatus.BackgroundTransparency = 1
+LoopStatus.Text = "LoopKill: desligado"
+LoopStatus.TextColor3 = Color3.fromRGB(200,200,200)
+LoopStatus.Font = Enum.Font.Gotham
+LoopStatus.TextSize = 14
+
+-- ===== Botões =====
+MarkBtn.MouseButton1Click:Connect(function()
+    if HRP then
+        basePos = HRP.Position
+        MarkBtn.Text = "Base Marcada ✔"
+        notify(StatusLabel, "Base marcada")
+    end
+end)
+
+GoBtn.MouseButton1Click:Connect(function()
+    if flying or not basePos then notify(StatusLabel, "Nenhuma base marcada") return end
+    flying = true
+    local dist = (basePos - HRP.Position).Magnitude
+    local duration = math.max(0.05, dist / 250)
+    local ok,err = pcall(function()
+        local t = TweenService:Create(HRP, TweenInfo.new(duration, Enum.EasingStyle.Linear), {CFrame = CFrame.new(basePos + Vector3.new(0,3,0))})
+        t:Play()
+        t.Completed:Wait()
+    end)
+    if not ok then pcall(function() HRP.CFrame = CFrame.new(basePos + Vector3.new(0,3,0)) end) end
+    if Character and Character:FindFirstChildOfClass("Humanoid") then
+        pcall(function() Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping) end)
+    end
+    flying = false
+    notify(StatusLabel, "Chegou na base")
+end)
+
+SpeedBtn.MouseButton1Click:Connect(function()
+    speedBoost = not speedBoost
+    SpeedBtn.Text = speedBoost and "Speed ✔" or "Speed Boost"
+    notify(StatusLabel, speedBoost and "Speed ativado" or "Speed desativado")
+end)
+
+JumpBtn.MouseButton1Click:Connect(function()
+    highJump = not highJump
+    JumpBtn.Text = highJump and "Jump ✔" or "High Jump"
+    notify(StatusLabel, highJump and "Pulo alto ativado" or "Pulo alto desativado")
+end)
+
+NoclipBtn.MouseButton1Click:Connect(function()
+    noclip = not noclip
+    NoclipBtn.Text = noclip and "Noclip ✔" or "Noclip"
+    notify(StatusLabel, noclip and "Noclip ativado" or "Noclip desativado")
+end)
+
+LoopBtn.MouseButton1Click:Connect(function()
+    local name = tostring(KillBox.Text or "")
+    if name == "" then notify(StatusLabel, "Digite nick para Loop Kill") return end
+    if not loopKillEnabled then
+        loopKillName = name
+        startLoopKill(loopKillName, LoopStatus)
+        LoopBtn.Text = "Desativar Loop Kill"
+        LoopStatus.Text = "LoopKill: ativo -> "..loopKillName
+        notify(StatusLabel, "LoopKill ativado: "..loopKillName)
+    else
+        stopLoopKill()
+        LoopBtn.Text = "Ativar Loop Kill"
+        LoopStatus.Text = "LoopKill: desligado"
+        notify(StatusLabel, "LoopKill desativado")
+    end
+end)
+
+FreezeBtn.MouseButton1Click:Connect(function()
+    freezeAll = not freezeAll
+    FreezeBtn.Text = freezeAll and "Freeze All ✔" or "Freeze All"
+    notify(StatusLabel, freezeAll and "Todos congelados" or "Todos liberados")
+end)
+
+-- ===== main render loop =====
+RunService.RenderStepped:Connect(function()
+    if Humanoid then
+        if speedBoost then pcall(function() Humanoid.WalkSpeed = 150 end) else pcall(function() Humanoid.WalkSpeed = 16 end) end
+        if highJump then pcall(function() Humanoid.JumpPower = 150 end) else pcall(function() Humanoid.JumpPower = 50 end) end
+    end
+    if noclip and Character then
+        for _,part in ipairs(Character:GetDescendants()) do
+            if part:IsA("BasePart") then
+                pcall(function() part.CanCollide = false end)
+            end
+        end
+    end
+    if freezeAll then
+        for _,plr in ipairs(Players:GetPlayers()) do
+            if plr ~= LocalPlayer and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
+                pcall(function()
+                    plr.Character.HumanoidRootPart.Anchored = true
+                end)
+            end
+        end
+    else
+        for _,plr in ipairs(Players:GetPlayers()) do
+            if plr ~= LocalPlayer and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
+                pcall(function()
+                    plr.Character.HumanoidRootPart.Anchored = false
+                end)
+            end
+        end
+    end
+end)
+
+-- ===== GUI arrastável =====
+local dragging = false
+local dragInput, mousePos, framePos
+Frame.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = true
+        mousePos = input.Position
+        framePos = Frame.Position
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+            end
+        end)
+    end
+end)
+Frame.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement then
+        dragInput = input
+    end
+end)
+RunService.RenderStepped:Connect(function()
+    if dragging and dragInput then
+        local delta = dragInput.Position - mousePos
+        Frame.Position = UDim2.new(framePos.X.Scale, framePos.X.Offset + delta.X, framePos.Y.Scale, framePos.Y.Offset + delta.Y)
+    end
+end)
+
+notify(StatusLabel, "Doldscript pronto")
+switchToMain()
