@@ -1,0 +1,613 @@
+local fenv = getfenv()
+fenv._WRBGrTaTRRKL = "This file was protected with MoonSec V3"
+local _ = fenv._ENV
+wait()
+fenv.MoonSec_StringsHiddenAttr = true
+local _6 = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
+local _call8 = game:GetService("Players")
+local _xWorkspace11 = game:GetService("Workspace").xWorkspace
+local _call13 = game:GetService("ReplicatedStorage")
+local _call15 = game:GetService("RunService")
+local _call17 = game:GetService("UserInputService")
+local _LocalPlayer18 = _call8.LocalPlayer
+local _call22 = _6:CreateWindow({
+    Folder = "RioFarm",
+    Author = "Ba4kz",
+    Title = "RioFarm Menu",
+    Size = UDim2.fromOffset(250, 200),
+})
+_call22:EditOpenButton({
+    StrokeThickness = 2,
+    Draggable = true,
+    Title = "RioFarm Menu",
+    Enabled = true,
+    Color = ColorSequence.new(Color3.fromHex("001f3f"), Color3.fromHex("003366")),
+    OnlyMobile = false,
+    Icon = "ghost",
+    CornerRadius = UDim.new(0, 20),
+})
+_call22:Tag({
+    Title = "v1.0.2",
+})
+local _call36 = _call22:Tab({
+    Locked = false,
+    Icon = "list",
+    Title = "ChangeLogs",
+})
+local _call38 = _call22:Section({
+    Title = "Main",
+    Icon = "house",
+    Opened = false,
+})
+local _call40 = _call38:Tab({
+    Locked = false,
+    Icon = "piggy-bank",
+    Title = "Auto Farm",
+})
+local _call42 = _call38:Tab({
+    Locked = false,
+    Icon = "wifi",
+    Title = "Teleport",
+})
+local _call44 = _call22:Section({
+    Title = "Others",
+    Icon = "settings",
+    Opened = false,
+})
+local _call46 = _call44:Tab({
+    Locked = false,
+    Icon = "eye",
+    Title = "Visual",
+})
+local _call48 = _call44:Tab({
+    Locked = false,
+    Icon = "users",
+    Title = "Player",
+})
+local _call50 = _call22:Section({
+    Title = "Extras",
+    Icon = "star",
+    Opened = false,
+})
+_call50:Tab({
+    Locked = false,
+    Icon = "diamond",
+    Title = "Premium",
+})
+_call13:FindFirstChild("xReplicatedStorage")
+_call13.xReplicatedStorage.Eventos:FindFirstChild("UI")
+_call13.xReplicatedStorage.Eventos.UI:Destroy()
+_call40:Toggle({
+    Callback = function(...)
+        task.spawn(function(...)
+            local _Idx72 = _xWorkspace11.Characters[_LocalPlayer18.Name]
+            _Idx72:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _Entrega84 = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Entrega
+            _Idx72:FindFirstChild("Lixeiro")
+            for _89, _89_2 in ipairs(_Entrega84:GetChildren()) do
+                for _92, _92_2 in ipairs(_89_2:GetChildren()) do
+                    _92_2:IsA("ProximityPrompt")
+                    local _ = _92_2.ObjectText
+                end
+            end
+            task.wait(0.05)
+            local _Idx98 = _xWorkspace11.Characters[_LocalPlayer18.Name]
+            _Idx98:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _Entrega110 = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Entrega
+            _Idx98:FindFirstChild("Lixeiro")
+            for _115, _115_2 in ipairs(_Entrega110:GetChildren()) do
+                for _118, _118_2 in ipairs(_115_2:GetChildren()) do
+                    _118_2:IsA("ProximityPrompt")
+                    local _ = _118_2.ObjectText
+                end
+            end
+            task.wait(0.05)
+            local _Idx124 = _xWorkspace11.Characters[_LocalPlayer18.Name]
+            _Idx124:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _Entrega136 = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Entrega
+            _Idx124:FindFirstChild("Lixeiro")
+            for _141, _141_2 in ipairs(_Entrega136:GetChildren()) do
+                for _144, _144_2 in ipairs(_141_2:GetChildren()) do
+                    _144_2:IsA("ProximityPrompt")
+                    local _ = _144_2.ObjectText
+                end
+            end
+            task.wait(0.05)
+            local _Idx150 = _xWorkspace11.Characters[_LocalPlayer18.Name]
+            _Idx150:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _Entrega162 = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Entrega
+            _Idx150:FindFirstChild("Lixeiro")
+            for _167, _167_2 in ipairs(_Entrega162:GetChildren()) do
+                for _170, _170_2 in ipairs(_167_2:GetChildren()) do
+                    _170_2:IsA("ProximityPrompt")
+                    local _ = _170_2.ObjectText
+                end
+            end
+            task.wait(0.05)
+            local _Idx176 = _xWorkspace11.Characters[_LocalPlayer18.Name]
+            _Idx176:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _Entrega188 = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Entrega
+            _Idx176:FindFirstChild("Lixeiro")
+            for _193, _193_2 in ipairs(_Entrega188:GetChildren()) do
+                for _196, _196_2 in ipairs(_193_2:GetChildren()) do
+                    _196_2:IsA("ProximityPrompt")
+                    local _ = _196_2.ObjectText
+                end
+            end
+            task.wait(0.05)
+            local _Idx202 = _xWorkspace11.Characters[_LocalPlayer18.Name]
+            _Idx202:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _Entrega214 = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Entrega
+            _Idx202:FindFirstChild("Lixeiro")
+            for _219, _219_2 in ipairs(_Entrega214:GetChildren()) do
+                for _222, _222_2 in ipairs(_219_2:GetChildren()) do
+                    _222_2:IsA("ProximityPrompt")
+                    local _ = _222_2.ObjectText
+                end
+            end
+            task.wait(0.05)
+            local _Idx228 = _xWorkspace11.Characters[_LocalPlayer18.Name]
+            _Idx228:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _Entrega240 = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Entrega
+            _Idx228:FindFirstChild("Lixeiro")
+            for _245, _245_2 in ipairs(_Entrega240:GetChildren()) do
+                for _248, _248_2 in ipairs(_245_2:GetChildren()) do
+                    _248_2:IsA("ProximityPrompt")
+                    local _ = _248_2.ObjectText
+                end
+            end
+            task.wait(0.05)
+            local _Idx254 = _xWorkspace11.Characters[_LocalPlayer18.Name]
+            _Idx254:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _Entrega266 = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Entrega
+            _Idx254:FindFirstChild("Lixeiro")
+            for _271, _271_2 in ipairs(_Entrega266:GetChildren()) do
+                for _274, _274_2 in ipairs(_271_2:GetChildren()) do
+                    _274_2:IsA("ProximityPrompt")
+                    local _ = _274_2.ObjectText
+                end
+            end
+            task.wait(0.05)
+            local _Idx280 = _xWorkspace11.Characters[_LocalPlayer18.Name]
+            _Idx280:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _Entrega292 = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Entrega
+            _Idx280:FindFirstChild("Lixeiro")
+            for _297, _297_2 in ipairs(_Entrega292:GetChildren()) do
+                for _300, _300_2 in ipairs(_297_2:GetChildren()) do
+                    _300_2:IsA("ProximityPrompt")
+                    local _ = _300_2.ObjectText
+                end
+            end
+            task.wait(0.05)
+            local _Idx306 = _xWorkspace11.Characters[_LocalPlayer18.Name]
+            _Idx306:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _Entrega318 = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Entrega
+            _Idx306:FindFirstChild("Lixeiro")
+            for _323, _323_2 in ipairs(_Entrega318:GetChildren()) do
+                for _326, _326_2 in ipairs(_323_2:GetChildren()) do
+                    _326_2:IsA("ProximityPrompt")
+                    local _ = _326_2.ObjectText
+                end
+            end
+            task.wait(0.05)
+            local _Idx332 = _xWorkspace11.Characters[_LocalPlayer18.Name]
+            _Idx332:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _Entrega344 = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Entrega
+            _Idx332:FindFirstChild("Lixeiro")
+            for _349, _349_2 in ipairs(_Entrega344:GetChildren()) do
+                for _352, _352_2 in ipairs(_349_2:GetChildren()) do
+                    _352_2:IsA("ProximityPrompt")
+                    local _ = _352_2.ObjectText
+                end
+            end
+            task.wait(0.05)
+            local _Idx358 = _xWorkspace11.Characters[_LocalPlayer18.Name]
+            _Idx358:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _Entrega370 = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Entrega
+            _Idx358:FindFirstChild("Lixeiro")
+            for _375, _375_2 in ipairs(_Entrega370:GetChildren()) do
+                for _378, _378_2 in ipairs(_375_2:GetChildren()) do
+                    _378_2:IsA("ProximityPrompt")
+                    local _ = _378_2.ObjectText
+                end
+            end
+            task.wait(0.05)
+            local _Idx384 = _xWorkspace11.Characters[_LocalPlayer18.Name]
+            _Idx384:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _Entrega396 = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Entrega
+            _Idx384:FindFirstChild("Lixeiro")
+            for _401, _401_2 in ipairs(_Entrega396:GetChildren()) do
+                for _404, _404_2 in ipairs(_401_2:GetChildren()) do
+                    _404_2:IsA("ProximityPrompt")
+                    local _ = _404_2.ObjectText
+                end
+            end
+            task.wait(0.05)
+            local _Idx410 = _xWorkspace11.Characters[_LocalPlayer18.Name]
+            _Idx410:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _Entrega422 = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Entrega
+            _Idx410:FindFirstChild("Lixeiro")
+            for _427, _427_2 in ipairs(_Entrega422:GetChildren()) do
+                for _430, _430_2 in ipairs(_427_2:GetChildren()) do
+                    _430_2:IsA("ProximityPrompt")
+                    local _ = _430_2.ObjectText
+                end
+            end
+            task.wait(0.05)
+            local _Idx436 = _xWorkspace11.Characters[_LocalPlayer18.Name]
+            _Idx436:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _Entrega448 = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Entrega
+            _Idx436:FindFirstChild("Lixeiro")
+            for _453, _453_2 in ipairs(_Entrega448:GetChildren()) do
+                for _456, _456_2 in ipairs(_453_2:GetChildren()) do
+                    _456_2:IsA("ProximityPrompt")
+                    local _ = _456_2.ObjectText
+                end
+            end
+            task.wait(0.05)
+            local _Idx462 = _xWorkspace11.Characters[_LocalPlayer18.Name]
+            _Idx462:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _Entrega474 = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Entrega
+            _Idx462:FindFirstChild("Lixeiro")
+            for _479, _479_2 in ipairs(_Entrega474:GetChildren()) do
+                for _482, _482_2 in ipairs(_479_2:GetChildren()) do
+                    _482_2:IsA("ProximityPrompt")
+                    local _ = _482_2.ObjectText
+                end
+            end
+            task.wait(0.05)
+            local _Idx488 = _xWorkspace11.Characters[_LocalPlayer18.Name]
+            _Idx488:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _Entrega500 = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Entrega
+            _Idx488:FindFirstChild("Lixeiro")
+            for _505, _505_2 in ipairs(_Entrega500:GetChildren()) do
+                for _508, _508_2 in ipairs(_505_2:GetChildren()) do
+                    _508_2:IsA("ProximityPrompt")
+                    local _ = _508_2.ObjectText
+                end
+            end
+            task.wait(0.05)
+            local _Idx514 = _xWorkspace11.Characters[_LocalPlayer18.Name]
+            _Idx514:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _Entrega526 = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Entrega
+            _Idx514:FindFirstChild("Lixeiro")
+            for _531, _531_2 in ipairs(_Entrega526:GetChildren()) do
+                for _534, _534_2 in ipairs(_531_2:GetChildren()) do
+                    _534_2:IsA("ProximityPrompt")
+                    local _ = _534_2.ObjectText
+                end
+            end
+            task.wait(0.05)
+            local _Idx540 = _xWorkspace11.Characters[_LocalPlayer18.Name]
+            _Idx540:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _Entrega552 = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Entrega
+            _Idx540:FindFirstChild("Lixeiro")
+            for _557, _557_2 in ipairs(_Entrega552:GetChildren()) do
+                for _560, _560_2 in ipairs(_557_2:GetChildren()) do
+                    _560_2:IsA("ProximityPrompt")
+                    local _ = _560_2.ObjectText
+                end
+            end
+            task.wait(0.05)
+            local _Idx566 = _xWorkspace11.Characters[_LocalPlayer18.Name]
+            _Idx566:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _Entrega578 = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Entrega
+            _Idx566:FindFirstChild("Lixeiro")
+            for _583, _583_2 in ipairs(_Entrega578:GetChildren()) do
+                for _586, _586_2 in ipairs(_583_2:GetChildren()) do
+                    _586_2:IsA("ProximityPrompt")
+                    local _ = _586_2.ObjectText
+                end
+            end
+            task.wait(0.05)
+            local _Idx592 = _xWorkspace11.Characters[_LocalPlayer18.Name]
+            _Idx592:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _Entrega604 = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Entrega
+            _Idx592:FindFirstChild("Lixeiro")
+            for _609, _609_2 in ipairs(_Entrega604:GetChildren()) do
+                for _612, _612_2 in ipairs(_609_2:GetChildren()) do
+                    _612_2:IsA("ProximityPrompt")
+                    local _ = _612_2.ObjectText
+                end
+            end
+            task.wait(0.05)
+            local _Idx618 = _xWorkspace11.Characters[_LocalPlayer18.Name]
+            _Idx618:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _Entrega630 = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Entrega
+            _Idx618:FindFirstChild("Lixeiro")
+            for _635, _635_2 in ipairs(_Entrega630:GetChildren()) do
+                for _638, _638_2 in ipairs(_635_2:GetChildren()) do
+                    _638_2:IsA("ProximityPrompt")
+                    local _ = _638_2.ObjectText
+                end
+            end
+            task.wait(0.05)
+            local _Idx644 = _xWorkspace11.Characters[_LocalPlayer18.Name]
+            _Idx644:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _Entrega656 = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Entrega
+            _Idx644:FindFirstChild("Lixeiro")
+            for _661, _661_2 in ipairs(_Entrega656:GetChildren()) do
+                for _664, _664_2 in ipairs(_661_2:GetChildren()) do
+                    _664_2:IsA("ProximityPrompt")
+                    local _ = _664_2.ObjectText
+                end
+            end
+            task.wait(0.05)
+            local _Idx670 = _xWorkspace11.Characters[_LocalPlayer18.Name]
+            _Idx670:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _Entrega682 = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Entrega
+            _Idx670:FindFirstChild("Lixeiro")
+            for _687, _687_2 in ipairs(_Entrega682:GetChildren()) do
+                for _690, _690_2 in ipairs(_687_2:GetChildren()) do
+                    _690_2:IsA("ProximityPrompt")
+                    local _ = _690_2.ObjectText
+                end
+            end
+            task.wait(0.05)
+            local _Idx696 = _xWorkspace11.Characters[_LocalPlayer18.Name]
+            _Idx696:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _Entrega708 = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Entrega
+            _Idx696:FindFirstChild("Lixeiro")
+            for _713, _713_2 in ipairs(_Entrega708:GetChildren()) do
+                for _716, _716_2 in ipairs(_713_2:GetChildren()) do
+                    _716_2:IsA("ProximityPrompt")
+                    local _ = _716_2.ObjectText
+                end
+            end
+            task.wait(0.05)
+            local _Idx722 = _xWorkspace11.Characters[_LocalPlayer18.Name]
+            _Idx722:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _Entrega734 = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Entrega
+            _Idx722:FindFirstChild("Lixeiro")
+            for _739, _739_2 in ipairs(_Entrega734:GetChildren()) do
+                for _742, _742_2 in ipairs(_739_2:GetChildren()) do
+                    _742_2:IsA("ProximityPrompt")
+                    local _ = _742_2.ObjectText
+                end
+            end
+            task.wait(0.05)
+            local _Idx748 = _xWorkspace11.Characters[_LocalPlayer18.Name]
+            _Idx748:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _Entrega760 = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Entrega
+            _Idx748:FindFirstChild("Lixeiro")
+            for _765, _765_2 in ipairs(_Entrega760:GetChildren()) do
+                for _768, _768_2 in ipairs(_765_2:GetChildren()) do
+                    _768_2:IsA("ProximityPrompt")
+                    local _ = _768_2.ObjectText
+                end
+            end
+            task.wait(0.05)
+            local _Idx774 = _xWorkspace11.Characters[_LocalPlayer18.Name]
+            _Idx774:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _Entrega786 = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Entrega
+            _Idx774:FindFirstChild("Lixeiro")
+            for _791, _791_2 in ipairs(_Entrega786:GetChildren()) do
+                for _794, _794_2 in ipairs(_791_2:GetChildren()) do
+                    _794_2:IsA("ProximityPrompt")
+                    local _ = _794_2.ObjectText
+                end
+            end
+            task.wait(0.05)
+            local _Idx800 = _xWorkspace11.Characters[_LocalPlayer18.Name]
+            _Idx800:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _Entrega812 = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Entrega
+            _Idx800:FindFirstChild("Lixeiro")
+            for _817, _817_2 in ipairs(_Entrega812:GetChildren()) do
+                for _820, _820_2 in ipairs(_817_2:GetChildren()) do
+                    _820_2:IsA("ProximityPrompt")
+                    local _ = _820_2.ObjectText
+                end
+            end
+            task.wait(0.05)
+            _xWorkspace11.Characters[_LocalPlayer18.Name]:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro.Coleta
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Lixeiro
+            error("internal 542: <25ms: infinitelooperror>")
+        end)
+    end,
+    Default = false,
+    Icon = "trash",
+    Title = "Auto Lixo",
+})
+_call40:Toggle({
+    Callback = function(...)
+        task.spawn(function(...)
+            _xWorkspace11.Characters[_LocalPlayer18.Name]:FindFirstChild("HumanoidRootPart")
+            local _ = _xWorkspace11.Sistemas.Empregos.Opcoes.Ifood.Coleta
+            local _ = _xWorkspace11.Sistemas
+            error("internal 542: <25ms: infinitelooperror>")
+        end)
+    end,
+    Default = false,
+    Icon = "utensils",
+    Title = "Auto Ifood",
+})
+_call46:Toggle({
+    Callback = function(...)
+        for _862, _862_2 in ipairs(_call8:GetPlayers()) do
+            local _ = _862_2 == _LocalPlayer18
+            local _ = _862_2.Character
+            local _ = _862_2.Character.Parent == _xWorkspace11.Characters
+        end
+        _call8.PlayerAdded:Connect(function(...)
+            local _872_vararg1 = ...
+            _872_vararg1.CharacterAdded:Connect(function(...)
+                local _876_vararg1 = ...
+                task.wait(0.12)
+                local _ = _872_vararg1 == _LocalPlayer18
+                _876_vararg1:FindFirstChildOfClass("Highlight")
+            end)
+        end)
+    end,
+    Default = false,
+    Icon = "eye",
+    Title = "Esp",
+})
+_call48:Toggle({
+    Callback = function(...)
+        local _ = _LocalPlayer18.Character
+        local _call886 = _LocalPlayer18.Character:WaitForChild("HumanoidRootPart")
+        local _call888 = Instance.new("BodyVelocity")
+        _call888.MaxForce = Vector3.new(1 / 0, 1 / 0, 1 / 0)
+        _call888.Velocity = Vector3.new(0, 0, 0)
+        _call888.Parent = _call886
+        local _callrequire898 = require(_LocalPlayer18:WaitForChild("PlayerScripts").PlayerModule:WaitForChild("ControlModule"))
+        _call15.RenderStepped:Connect(function(...)
+            local _ = _LocalPlayer18.Character
+            _LocalPlayer18.Character:FindFirstChild("HumanoidRootPart")
+            local _call908 = _callrequire898:GetMoveVector()
+            local _CurrentCamera910 = game.Workspace.CurrentCamera
+            local _LookVector912 = _CurrentCamera910.CFrame.LookVector
+            _call886.CFrame = CFrame.new(_call886.Position, (_call886.Position + Vector3.new(_LookVector912.X, 0, _LookVector912.Z).Unit))
+            local _ = _call908.X
+            local _ = _call908.Z
+            _call17:IsKeyDown(Enum.KeyCode.Space)
+            _call17:IsKeyDown(Enum.KeyCode.LeftControl)
+            _call888.Velocity = (((((_CurrentCamera910.CFrame.RightVector * _call908.X) * 20) + ((- _CurrentCamera910.CFrame.LookVector * _call908.Z) * 20)) + Vector3.new(0, 20, 0)) + Vector3.new(0, - 20, 0))
+        end)
+    end,
+    Default = false,
+    Icon = "plane",
+    Title = "Fly",
+})
+_call48:Slider({
+    Title = "Fly Speed",
+    Value = {
+        Max = 200,
+        Default = 20,
+        Min = 1,
+    },
+    Callback = function(...)
+    end,
+    Icon = "gauge",
+    Step = 1,
+})
+_call48:Toggle({
+    Callback = function(...)
+        local _ = _LocalPlayer18.Character
+        _call15.Stepped:Connect(function(...)
+            local _ = _LocalPlayer18.Character
+            for _966, _966_2 in pairs(_LocalPlayer18.Character:GetDescendants()) do
+                _966_2:IsA("BasePart")
+                _966_2.CanCollide = false
+            end
+        end)
+    end,
+    Default = false,
+    Icon = "lock-open",
+    Title = "NoClip",
+})
+_call48:Slider({
+    Value = {
+        Max = 250,
+        Default = 16,
+        Min = 8,
+    },
+    Title = "WalkSpeed",
+    Callback = function(...)
+        local _971_vararg1 = ...
+        local _Humanoid975 = game.Players.LocalPlayer.Character.Humanoid
+        _Humanoid975.WalkSpeed = _971_vararg1
+    end,
+})
+_call42:Button({
+    Callback = function(...)
+        local _call980 = Vector3.new(- 1289.15918, 6.44854736, - 431.976898)
+        local _call987 = _xWorkspace11.Characters[_LocalPlayer18.Name]:FindFirstChild("HumanoidRootPart")
+        _call987.CFrame = CFrame.new(_call980, (_call980 + Vector3.new(0.00513911853, 1.28924952e-07, - 0.999986768)))
+    end,
+    Icon = "building-2",
+    Title = "Prefeitura",
+})
+_call42:Button({
+    Callback = function(...)
+        local _call995 = Vector3.new(- 1289.01001, 3.68992472, - 150.500824)
+        local _call1002 = _xWorkspace11.Characters[_LocalPlayer18.Name]:FindFirstChild("HumanoidRootPart")
+        _call1002.CFrame = CFrame.new(_call995, (_call995 + Vector3.new(- 0.0139366612, 1.06317131e-07, 0.999902904)))
+    end,
+    Icon = "shrub",
+    Title = "Pra\xC3\xA7a Central",
+})
+_call42:Button({
+    Callback = function(...)
+        local _call1010 = Vector3.new(- 1427.97925, 4.27134514, - 548.923645)
+        local _call1017 = _xWorkspace11.Characters[_LocalPlayer18.Name]:FindFirstChild("HumanoidRootPart")
+        _call1017.CFrame = CFrame.new(_call1010, (_call1010 + Vector3.new(- 0.798986912, - 9.89322047e-08, - 0.60134846)))
+    end,
+    Icon = "store",
+    Title = "Lojinha",
+})
+_call42:Button({
+    Callback = function(...)
+        local _call1025 = Vector3.new(- 963.277649, 15.8028984, - 200.310242)
+        local _call1032 = _xWorkspace11.Characters[_LocalPlayer18.Name]:FindFirstChild("HumanoidRootPart")
+        _call1032.CFrame = CFrame.new(_call1025, (_call1025 + Vector3.new(- 0.606307685, 1.6261833e-09, 0.79523015)))
+    end,
+    Icon = "droplets",
+    Title = "Lavagem",
+})
+_call42:Button({
+    Callback = function(...)
+        local _call1040 = Vector3.new(- 983.543335, 3.89289188, - 11.2266397)
+        local _call1047 = _xWorkspace11.Characters[_LocalPlayer18.Name]:FindFirstChild("HumanoidRootPart")
+        _call1047.CFrame = CFrame.new(_call1040, (_call1040 + Vector3.new(- 0.999968469, 9.7042026e-08, - 0.00794277992)))
+    end,
+    Icon = "car",
+    Title = "Concession\xC3\xA1ria",
+})
+_call42:Button({
+    Callback = function(...)
+        local _call1055 = Vector3.new(- 1151.45361, 4.07948542, - 1025.81445)
+        local _call1062 = _xWorkspace11.Characters[_LocalPlayer18.Name]:FindFirstChild("HumanoidRootPart")
+        _call1062.CFrame = CFrame.new(_call1055, (_call1055 + Vector3.new(- 0.752182961, - 7.29157748e-08, 0.658954322)))
+    end,
+    Icon = "bank",
+    Title = "Banco Central",
+})
+_call42:Button({
+    Callback = function(...)
+        local _call1070 = Vector3.new(- 1757.07825, 4.02870989, - 438.384552)
+        local _call1077 = _xWorkspace11.Characters[_LocalPlayer18.Name]:FindFirstChild("HumanoidRootPart")
+        _call1077.CFrame = CFrame.new(_call1070, (_call1070 + Vector3.new(- 0.804994762, - 3.48994877e-09, 0.593281925)))
+    end,
+    Icon = "skull",
+    Title = "Mercado Negro",
+})
+_call36:Paragraph({
+    Locked = false,
+    Title = "Atualiza\xC3\xA7\xC3\xA3o 1.0.2",
+    Desc = "[ + ] Auto Ifood!\n[ + ] Teleporte!\n[ + ] Vantagens: Visual & Player!\n\nMais atualiza\xC3\xA7\xC3\xB5es brevemente \xED\xA0\xBD\xED\xB4\xA5",
+})
+_call36:Paragraph({
+    Title = "Lembrando, menu est\xC3\xA1 em fase de desenvolvimento!",
+    Locked = false,
+})
